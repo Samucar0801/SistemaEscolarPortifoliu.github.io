@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Escolar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Referência ao arquivo CSS -->
+</head>
+<body>
+
+    <header>
+        <h1>Sistema de Gestão Escolar</h1>
+    </header>
+
+    <div class="container">
+        <!-- Seção para adicionar Funcionário -->
+        <h2>Adicionar Funcionário</h2>
+        <form id="formFuncionario" action="/adicionar_funcionario" method="post">  <!-- Adicionado action e method para o formulário -->
+            <label for="nomeFuncionario">Nome:</label>
+            <input type="text" id="nomeFuncionario" name="nomeFuncionario" placeholder="Digite o nome do funcionário" required> <!-- Adicionado name -->
+
+            <label for="idadeFuncionario">Idade:</label>
+            <input type="number" id="idadeFuncionario" name="idadeFuncionario" placeholder="Digite a idade do funcionário" required> <!-- Adicionado name -->
+
+            <label for="cargoFuncionario">Cargo:</label>
+            <input type="text" id="cargoFuncionario" name="cargoFuncionario" placeholder="Digite o cargo do funcionário" required> <!-- Adicionado name -->
+
+            <label for="salarioFuncionario">Salário:</label>
+            <input type="number" id="salarioFuncionario" name="salarioFuncionario" placeholder="Digite o salário do funcionário" required> <!-- Adicionado name -->
+
+            <button type="submit">Adicionar Funcionário</button>
+        </form>
+
+        <h2>Lista de Funcionários</h2>
+        <ul id="listaFuncionarios" class="list">
+            <!-- Renderização da lista de funcionários adicionados -->
+            {% for funcionario in funcionarios %}
+                <li>{{ funcionario.nome }} - {{ funcionario.cargo }}</li> <!-- Adicionado para exibir funcionários -->
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- Seção para adicionar Aluno -->
+        <h2>Adicionar Aluno</h2>
+        <form id="formAluno" action="/adicionar_aluno" method="post">  <!-- Adicionado action e method para o formulário -->
+            <label for="nomeAluno">Nome:</label>
+            <input type="text" id="nomeAluno" name="nomeAluno" placeholder="Digite o nome do aluno" required> <!-- Adicionado name -->
+
+            <label for="idadeAluno">Idade:</label>
+            <input type="number" id="idadeAluno" name="idadeAluno" placeholder="Digite a idade do aluno" required> <!-- Adicionado name -->
+
+            <label for="matriculaAluno">Número de Matrícula:</label>
+            <input type="text" id="matriculaAluno" name="matriculaAluno" placeholder="Digite o número de matrícula" required> <!-- Adicionado name -->
+
+            <button type="submit">Adicionar Aluno</button>
+        </form>
+
+        <h2>Lista de Alunos</h2>
+        <ul id="listaAlunos" class="list">
+            <!-- Renderização da lista de alunos adicionados -->
+            {% for aluno in alunos %}
+                <li>{{ aluno.nome }} - Matrícula: {{ aluno.numero_matricula }}</li> <!-- Adicionado para exibir alunos -->
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
